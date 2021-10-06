@@ -1,0 +1,20 @@
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: games
+  namespace: electronic-shop
+  labels:
+    kiali_wizard: request_routing
+spec:
+  hosts:
+    - games.electronic-shop.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: games.electronic-shop.svc.cluster.local
+            subset: v1
+          weight: 50
+        - destination:
+            host: games.electronic-shop.svc.cluster.local
+            subset: v2
+          weight: 50
