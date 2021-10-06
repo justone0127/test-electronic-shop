@@ -1,0 +1,24 @@
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: music
+  namespace: electronic-shop
+  labels:
+    kiali_wizard: request_routing
+spec:
+  hosts:
+    - music.electronic-shop.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: music.electronic-shop.svc.cluster.local
+            subset: v1
+          weight: 33
+        - destination:
+            host: music.electronic-shop.svc.cluster.local
+            subset: v2
+          weight: 33
+        - destination:
+            host: music.electronic-shop.svc.cluster.local
+            subset: v3
+          weight: 34
